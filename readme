@@ -1,1 +1,3 @@
-UserRestAPI - CRUD Operations for User Rest API. 
+BirdSightings System
+  Allows to view and create Bird Sightings
+Integreated with MYSQL as DB and Spring boot for Rest API.
