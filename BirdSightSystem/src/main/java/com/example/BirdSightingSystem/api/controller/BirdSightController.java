@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/birdsightings")
 public class BirdSightController {
@@ -40,15 +40,17 @@ public class BirdSightController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity createBirdSighting(@RequestBody BirdSighting birdSighting) {
+    public ResponseEntity<String> createBirdSighting(@RequestBody BirdSighting birdSighting) {
         System.out.println("Adding BirdSighting: " + birdSighting);
         boolean isValid = birdSightingValidator.validate(birdSighting);
-        if(isValid){
-            this.birdSightService.createBirdSighting(birdSighting);
-            return (ResponseEntity) ResponseEntity.ok();
+
+        if (isValid) {
+            birdSightService.createBirdSighting(birdSighting);
+            return ResponseEntity.status(HttpStatus.CREATED).body("Bird sighting created successfully.");
+        } else {
+            return ResponseEntity.badRequest().body("Invalid bird sighting data.");
         }
-        else
-            return (ResponseEntity) ResponseEntity.badRequest();
     }
+
 
 }

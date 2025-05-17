@@ -1,23 +1,33 @@
 package com.example.BirdSightingSystem.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 /**
  *   POJO object that contains Bird Sightings information.
  */
 public class BirdSighting {
     private int id;
-    private String species_name;
-    private String description;
-    private String image_url;
-    private float location_lat ;
-    private float location_long ;
+    private String speciesName;
 
-    public BirdSighting(int id, String species_name, String description, String image_url, float location_lat, float location_long) {
+    private String description;
+
+    private String imageUrl;
+
+    private float locationLat;
+
+    private float locationLong;
+
+    public BirdSighting(int id, String species_name, String description, String imageUrl, float locationLat, float locationLong) {
         this.id = id;
-        this.species_name = species_name;
+        this.speciesName = species_name;
         this.description = description;
-        this.image_url = image_url;
-        this.location_lat = location_lat;
-        this.location_long = location_long;
+        this.imageUrl = imageUrl;
+        this.locationLat = locationLat;
+        this.locationLong = locationLong;
+    }
+
+    public BirdSighting() {
+
     }
 
     public int getId() {
@@ -29,11 +39,11 @@ public class BirdSighting {
     }
 
     public String getSpeciesName() {
-        return species_name;
+        return speciesName;
     }
 
     public void setSpeciesName(String species_name) {
-        this.species_name = species_name;
+        this.speciesName = species_name;
     }
 
     public String getDescription() {
@@ -45,38 +55,38 @@ public class BirdSighting {
     }
 
     public String getImageUrl() {
-        return image_url;
+        return imageUrl;
     }
 
     public void setImageUrl(String image_url) {
-        this.image_url = image_url;
+        this.imageUrl = image_url;
     }
 
     public float getLocationLat() {
-        return location_lat;
+        return locationLat;
     }
 
     public void setLocationLat(float location_lat) {
-        this.location_lat = location_lat;
+        this.locationLat = location_lat;
     }
 
     public float getLocationLong() {
-        return location_long;
+        return locationLong;
     }
 
     public void setLocationLong(float location_long) {
-        this.location_long = location_long;
+        this.locationLong = location_long;
     }
 
     @Override
     public String toString() {
         return "BirdSighting{" +
                 "id=" + id +
-                ", species_name='" + species_name + '\'' +
+                ", species_name='" + speciesName + '\'' +
                 ", description='" + description + '\'' +
-                ", image_url='" + image_url + '\'' +
-                ", location_lat=" + location_lat +
-                ", location_long=" + location_long +
+                ", image_url='" + imageUrl + '\'' +
+                ", location_lat=" + locationLat +
+                ", location_long=" + locationLong +
                 '}';
     }
 }

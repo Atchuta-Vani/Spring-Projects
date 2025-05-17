@@ -7,9 +7,7 @@ import com.example.BirdSightingSystem.model.BirdSighting;
  */
 public class BirdSightingValidator {
     public boolean validate(BirdSighting birdSighting) {
-        if(birdSighting.getSpeciesName().startsWith("!")){
-            return false;
-        }
+
         return true;
     }
 }

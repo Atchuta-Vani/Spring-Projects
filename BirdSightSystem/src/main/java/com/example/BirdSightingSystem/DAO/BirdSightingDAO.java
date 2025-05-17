@@ -17,38 +17,35 @@ public class BirdSightingDAO {
     String selectBirdSightingsSQL = "Select * from mydb.BIRD_SIGHTING;";
     public BirdSightingDAO() {
         //JDBC connection and load driver to MySQL
-        birdSightings = new ArrayList<>();
-        birdSightings.add(new BirdSighting(1,"Blue Jay", "beautifulbird","www.s3.url",37.7348257f,-121.948575f ));
-        birdSightings.add(new BirdSighting(2,"Quail", "cute bird","www.s3.url",37.7348257f,-121.948575f ));
-
     }
 
     public List<BirdSighting> getBirdSightings() {
-        //TODO : Implement retrieving birdSightings from DB table BIRD_SIGHTING
-        //select * from BIRD_SIGHTING
-        Connection conn = DBConnection.getConnection();
-        try {
-            PreparedStatement stmt = conn.prepareStatement(selectBirdSightingsSQL);
-            ResultSet resultSet = stmt.executeQuery();
-            while (resultSet.next()) {
-                int id = resultSet.getInt("id");
-                String name = resultSet.getString("species_name");
-                String desc = resultSet.getString("description");
+        List<BirdSighting> birdSightings = new ArrayList<>();
+        String selectBirdSightingsSQL = "SELECT * FROM BIRD_SIGHTING";
 
-                System.out.printf("ID: %d, Name: %s, Email: %s%n", id, name, desc);
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(selectBirdSightingsSQL);
+             ResultSet resultSet = stmt.executeQuery()) {
+
+            while (resultSet.next()) {
+                BirdSighting sighting = new BirdSighting();
+                sighting.setId(resultSet.getInt("id"));
+                sighting.setSpeciesName(resultSet.getString("species_name"));
+                sighting.setDescription(resultSet.getString("description"));
+                sighting.setImageUrl(resultSet.getString("image_url"));
+                sighting.setLocationLat(resultSet.getFloat("location_lat"));
+                sighting.setLocationLong(resultSet.getFloat("location_long"));
+
+                birdSightings.add(sighting);
             }
 
-            // Close resources
-            resultSet.close();
-            stmt.close();
-            conn.close();
         } catch (SQLException e) {
-            throw new RuntimeException(e);
-        } catch (Exception e){
-            throw new RuntimeException(e);
+            throw new RuntimeException("Database error fetching bird sightings", e);
         }
+
         return birdSightings;
     }
+
 
     public List<BirdSighting> getSearchBirdSightings(String bird_name) {
         //TO DO : Select * from BIRD_SIGHTING table with criteria as birdName.
