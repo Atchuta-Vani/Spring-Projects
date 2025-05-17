@@ -1,3 +1,41 @@
 BirdSightings System
   Allows to view and create Bird Sightings
-Integreated with MYSQL as DB and Spring boot for Rest API.
+  Integreated with MYSQL as DB and Spring boot for Rest API.
+  Uses React UI as front end.
+
+1) For DB: 
+  Install MySQL
+  create schema mydb. 
+  Create two tables USER and BIRD_SIGHTING tables. 
+  Insert data into User Table and BIRD_SIGHTING tables.
+
+2) Running Backend Server (Spring Boot)
+  Locate SpringBirdSightApplication. Right click and run main method from Intelli J.
+  - This Brings Spring boot application running at port 8080. 
+  http://localhost:8080/birdsightings/
+
+3) Start node server in command prompt.
+  cd bird-sighting-ui
+  npm start
+  - This opens and loads http://localhost:3000
+ 
+C:\Users\venka\IdeaProjects\BirdSightSystem\bird-sighting-ui>npm start
+
+> bird-sighting-ui@0.1.0 start
+> react-scripts start
+
+(node:13120) [DEP_WEBPACK_DEV_SERVER_ON_AFTER_SETUP_MIDDLEWARE] DeprecationWarning: 'onAfterSetupMiddleware' option is deprecated. Please use the 'setupMiddlewares' option.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+(node:13120) [DEP_WEBPACK_DEV_SERVER_ON_BEFORE_SETUP_MIDDLEWARE] DeprecationWarning: 'onBeforeSetupMiddleware' option is deprecated. Please use the 'setupMiddlewares' option.
+Starting the development server...
+Compiled successfully!
+
+You can now view bird-sighting-ui in the browser.
+
+  Local:            http://localhost:3000
+  On Your Network:  http://10.0.0.57:3000
+
+Note that the development build is not optimized.
+To create a production build, use npm run build.
+
+webpack compiled successfully
